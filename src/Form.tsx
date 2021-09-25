@@ -115,8 +115,8 @@ export default function Form() {
                 ) : (<></>)}
 
                 <Box sx={{ marginTop: '15px', display: 'flex', justifyContent: 'space-between' }}>
-                    <Button variant='outlined'>Cancel</Button>
-                    <Button
+                    <Button variant='outlined' sx={{marginRight: '5px'}}>Cancel</Button>
+                    <Button sx={{marginLeft: '5px'}}
                     disabled={formData.password.length < 8 || formData.password !== formData.passwordConfirmation}
                     type='submit' variant='contained'>Submit</Button>
                 </Box>

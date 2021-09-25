@@ -1,10 +1,11 @@
-# Getting Started with Create React App
+# Springload Form Validation Problem
+This is my attempt at Springloads Form Validation problem.  
+The problem can be found in detail here: [https://github.com/springload/form-validation-problem/](https://github.com/springload/form-validation-problem/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## My Strategy:
+I decided to use React with Material UI rendered components. I made this choice because Material UI offers professional responsive components with accessibility and portability largely built in, and considering I was under time constraint, I wasn't going to be able to implement these from scratch.  
 
-## Available Scripts
-
-In the project directory, you can run:
+The script can be run with:
 
 ### `yarn start`
 
@@ -13,11 +14,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 
@@ -29,18 +25,11 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Reflections
+Having used Material UI(MUI) in the past, I thought I would be able to quickly put together a form that met the criteria of the project. Half way through however, I discovered that last week MUI had released their next major version, which had deprecated many features I was familiar with and introduced new concepts that I had to learn in order to get the styling working. Because of these delays I overshot the targeted 2 hours.  
+In hindsight, I should have set lower expectations and tried to complete it well within 2 hours, so that in the event of unknowns or other delays, I had time available to still get it completed on time; and if I completed it with time to spare I could have worked toward improving my design.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I am particulary satisfied with the portability of the form; how it retains a clean layout even when reduced to the size of a small phone screen. And thanks to MUI's compatibility, it appears to be touchscreen-friendly too so I'm confident in claiming this form is responsive.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+As I was already overtime, I wasn't able to complete the error checking to satisfaction. I'm unhappy with the inconsistancy between error messages vs. disable submit button. If I had more time I would have liked to improve that.
