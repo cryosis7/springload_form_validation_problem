@@ -7,16 +7,11 @@ interface FormData {
     password: string,
     passwordConfirmation: string,
     colourGroup: string,
-    animals: Array<string>,
+    animals: {[key: string]: boolean},
     tigerType?: string | null,
 }
 
-const ANIMALS = {
-    'bear': false,
-    'tiger': false,
-    'snake': false,
-    'donkey': false
-};
+const COLOURS = ['blue', 'green', 'red', 'black', 'brown'];
 
 export default function Form() {
     const [formData, setFormData] = useState<FormData>({
@@ -24,7 +19,11 @@ export default function Form() {
         password: '',
         passwordConfirmation: '',
         colourGroup: '',
-        animals: [],
+        animals: {
+            'bear': false,
+            'tiger': false,
+            'snake': false,
+            'donkey': false },
         tigerType: null
     })
 
@@ -34,7 +33,9 @@ export default function Form() {
     }
 
     const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event)
+        const { name, checked } = event.target;
+        formData.animals = {...formData.animals, [name]: checked}
+        setFormData({...formData})
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -63,12 +64,15 @@ export default function Form() {
                         marginTop: '5px',
                         marginBottom: '5px'
                     }} />
+
                 <TextField required label="Password" name='password' type="password"
                     fullWidth onChange={handleChange} value={formData.password}
                     sx={{ marginTop: '5px', marginBottom: '5px' }} />
+
                 <TextField required label="Confirm Password" name='passwordConfirmation'
                     type="password" fullWidth onChange={handleChange} value={formData.passwordConfirmation}
                     sx={{ marginTop: '5px', marginBottom: '5px' }} />
+
                 <RadioGroup
                     aria-label="colour" name='colourGroup' row
                     onChange={handleChange} value={formData.colourGroup}
@@ -77,27 +81,24 @@ export default function Form() {
                         marginBottom: '5px',
                         justifyContent: 'space-evenly'
                     }}>
-                    <FormControlLabel value="blue" label="Blue" control={<Radio />} />
-                    <FormControlLabel value="green" label="Green" control={<Radio />} />
-                    <FormControlLabel value="red" label="Red" control={<Radio />} />
-                    <FormControlLabel value="black" label="Black" control={<Radio />} />
-                    <FormControlLabel value="brown" label="Brown" control={<Radio />} />
+                    {COLOURS.map(colour => (
+                        <FormControlLabel value={colour}
+                            label={colour[0].toUpperCase() + colour.substring(1)}
+                            control={<Radio />} key={colour} />
+                    ))}
                 </RadioGroup>
-                <FormControl >
-                    <FormGroup row
-                        sx={{
-                            alignItems: 'center',
-                            marginTop: '5px',
-                            justifyContent: 'space-evenly'
-                        }} >
-                        {Object.entries(ANIMALS).map(([animal, checked]) => (
+
+                <FormControl sx={{ display: 'flex', marginTop: '5px' }}>
+                    <FormGroup row sx={{ justifyContent: 'space-evenly' }} onChange={handleCheckbox}>
+                        {Object.entries(formData.animals).map(([animal, checked]) => (
                             <FormControlLabel value={animal} key={animal}
                                 label={animal[0].toUpperCase() + animal.substring(1)}
-                                control={<Checkbox key={animal}/>}
+                                control={<Checkbox key={animal} name={animal}/>}
                             />)
                         )}
                     </FormGroup>
                 </FormControl>
+
                 <Box sx={{ marginTop: '15px', display: 'flex', justifyContent: 'space-between' }}>
                     <Button variant='outlined'>Cancel</Button>
                     <Button type='submit' variant='contained'>Submit</Button>
