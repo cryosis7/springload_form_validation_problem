@@ -43,6 +43,8 @@ export default function Form() {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        alert(`Form Filled (also printed in console):\n${Object.entries(formData).map(([name, value]) => `${name}: ${value}`).join('\n')}`)
         console.log(formData)
     }
 
@@ -114,7 +116,9 @@ export default function Form() {
 
                 <Box sx={{ marginTop: '15px', display: 'flex', justifyContent: 'space-between' }}>
                     <Button variant='outlined'>Cancel</Button>
-                    <Button type='submit' variant='contained'>Submit</Button>
+                    <Button
+                    disabled={formData.password.length < 8 || formData.password !== formData.passwordConfirmation}
+                    type='submit' variant='contained'>Submit</Button>
                 </Box>
             </form>
         </Box>
