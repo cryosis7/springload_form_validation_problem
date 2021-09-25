@@ -35,13 +35,15 @@ export default function Form() {
     const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, checked } = event.target;
         formData.animals = {...formData.animals, [name]: checked}
+        if (name === 'tiger' && !checked) {
+            formData.tigerType = null
+        }
         setFormData({...formData})
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(event, event.target)
-
+        console.log(formData)
     }
 
     return (
@@ -59,7 +61,7 @@ export default function Form() {
         }}>
             <form onSubmit={handleSubmit}>
                 <TextField required label="Email" name='email' placeholder="john.doe@gmail.com"
-                    onChange={handleChange} value={formData.email}
+                    onChange={handleChange} value={formData.email} type='email'
                     fullWidth sx={{
                         marginTop: '5px',
                         marginBottom: '5px'
@@ -67,9 +69,11 @@ export default function Form() {
 
                 <TextField required label="Password" name='password' type="password"
                     fullWidth onChange={handleChange} value={formData.password}
+                    error={formData.password.length < 8}
                     sx={{ marginTop: '5px', marginBottom: '5px' }} />
 
                 <TextField required label="Confirm Password" name='passwordConfirmation'
+                    error={formData.password !== formData.passwordConfirmation}
                     type="password" fullWidth onChange={handleChange} value={formData.passwordConfirmation}
                     sx={{ marginTop: '5px', marginBottom: '5px' }} />
 
@@ -98,6 +102,15 @@ export default function Form() {
                         )}
                     </FormGroup>
                 </FormControl>
+
+                {formData.animals.tiger ? (
+                    <TextField required label="Type of Tiger" name='tigerType' placeholder="Burmese"
+                    onChange={handleChange} value={formData.tigerType || ""}
+                    fullWidth sx={{
+                        marginTop: '5px',
+                        marginBottom: '5px'
+                    }} />
+                ) : (<></>)}
 
                 <Box sx={{ marginTop: '15px', display: 'flex', justifyContent: 'space-between' }}>
                     <Button variant='outlined'>Cancel</Button>
