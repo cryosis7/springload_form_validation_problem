@@ -28,8 +28,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Reflections
 Having used Material UI(MUI) in the past, I thought I would be able to quickly put together a form that met the criteria of the project. Half way through however, I discovered that last week MUI had released their next major version, which had deprecated many features I was familiar with and introduced new concepts that I had to learn in order to get the styling working. Because of these delays I overshot the targeted 2 hours.  
-In hindsight, I should have set lower expectations and tried to complete it well within 2 hours, so that in the event of unknowns or other delays, I had time available to still get it completed on time; and if I completed it with time to spare I could have worked toward improving my design.
+In hindsight, I should probably have just used standard HTML elements with minimal css for the form rather than MUI.  
+That way I would also have had time to get started on writing some tests for it too. 
 
-I am particulary satisfied with the portability of the form; how it retains a clean layout even when reduced to the size of a small phone screen. And thanks to MUI's compatibility, it appears to be touchscreen-friendly too so I'm confident in claiming this form is responsive.
+I am particulary satisfied with the portability of the form; how it retains a clean layout even when reduced to the size of a small phone screen. Based on some limited testing, it appears to be touchscreen-friendly too so I'm tentatively claiming this form is responsive and mobile friendly.
 
 As I was already overtime, I wasn't able to complete the error checking to satisfaction. I'm unhappy with the inconsistancy between error messages vs. disable submit button. If I had more time I would have liked to improve that.
